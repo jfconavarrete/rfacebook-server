@@ -11,7 +11,7 @@ loadLikes <- function(pageNames) {
   # init empty dataframe
   pageData = data.frame(name = character(), likes = numeric(), stringsAsFactors = FALSE)
   
-  for (name in pageNames){
+  for (name in unlist(pageNames)){
     response <- callAPI(sprintf(query, name), token=fb_oauth)
     # inefficient but enough for this use case
     pageData <- rbind(pageData, data.frame(name=name, likes=response$fan_count))
